@@ -1,0 +1,105 @@
+# subleq quine
+#   by Chris Brauchli
+#
+# Could be much shorter if it were written directly in
+# assembled subleq.
+# Assemble using this assembler (which uses stdin and produces stdout)
+#   http://mazonka.com/subleq/sqasm.cpp
+# and use this emulator:
+#   http://mazonka.com/subleq/sqrun.cpp
+
+
+# print *p
+start: a; p Z; Z a; Z
+a: 0 (-1)
+
+# p++
+neg1 p
+
+# check if p<E
+a; E Z; Z a; Z
+p a ending
+
+# jmp to start if p>=E
+Z Z start
+
+
+# print declaration of A
+ending: q (-1)
+endloop: b; p2 Z; Z b; Z
+b: 0 (-1)
+
+# p2++
+neg1 p2
+
+# check if p2<E
+b; E Z; Z b; Z
+p2 b end
+
+# jmp to endloop if p2>=E
+Z Z endloop
+
+
+# Print closing quote and end of code and HALT
+end:  q (-1); s (-1); l (-1); c (-1); l (-1); nl (-1)
+Z Z (-1)
+
+. p: A
+. p2: A
+. Z: 0
+. neg1: -1
+. q: 34; s: 32 l: 69 c: 58 nl: 10
+
+. A: "# subleq quine
+#   by Chris Brauchli
+#
+# Could be much shorter if it were written directly in
+# assembled subleq.
+# Assemble using this assembler (which uses stdin and produces stdout)
+#   http://mazonka.com/subleq/sqasm.cpp
+# and use this emulator:
+#   http://mazonka.com/subleq/sqrun.cpp
+
+
+# print *p
+start: a; p Z; Z a; Z
+a: 0 (-1)
+
+# p++
+neg1 p
+
+# check if p<E
+a; E Z; Z a; Z
+p a ending
+
+# jmp to start if p>=E
+Z Z start
+
+
+# print declaration of A
+ending: q (-1)
+endloop: b; p2 Z; Z b; Z
+b: 0 (-1)
+
+# p2++
+neg1 p2
+
+# check if p2<E
+b; E Z; Z b; Z
+p2 b end
+
+# jmp to endloop if p2>=E
+Z Z endloop
+
+
+# Print closing quote and end of code and HALT
+end:  q (-1); s (-1); l (-1); c (-1); l (-1); nl (-1)
+Z Z (-1)
+
+. p: A
+. p2: A
+. Z: 0
+. neg1: -1
+. q: 34; s: 32 l: 69 c: 58 nl: 10
+
+. A: " E:E
